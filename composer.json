@@ -1,0 +1,17 @@
+{
+    "name": "cmmarslender/timer",
+    "description": "PHP Timer with optional per-item averages",
+    "type": "library",
+    "require-dev": {
+        "10up/wp_mock": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Marslender",
+            "email": "chrismarslender@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
