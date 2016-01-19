@@ -4,10 +4,8 @@ namespace Cmmarslender\Timer;
 
 use PHPUnit_Framework_TestResult;
 use Text_Template;
-use WP_Mock;
-use WP_Mock\Tools\TestCase as BaseTestCase;
 
-class TestCase extends BaseTestCase {
+class TestCase extends \PHPUnit_Framework_TestCase {
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
 		$this->setPreserveGlobalState( false );
 		return parent::run( $result );
@@ -25,17 +23,6 @@ class TestCase extends BaseTestCase {
 		}
 
 		parent::setUp();
-	}
-
-	public function assertActionsCalled() {
-		$actions_not_added = $expected_actions = 0;
-		try {
-			WP_Mock::assertActionsCalled();
-		} catch ( \Exception $e ) {
-			$actions_not_added = 1;
-			$expected_actions  = $e->getMessage();
-		}
-		$this->assertEmpty( $actions_not_added, $expected_actions );
 	}
 
 	public function ns( $function ) {

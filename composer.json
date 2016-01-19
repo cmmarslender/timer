@@ -2,9 +2,7 @@
     "name": "cmmarslender/timer",
     "description": "PHP Timer with optional per-item averages",
     "type": "library",
-    "require-dev": {
-        "10up/wp_mock": "dev-master"
-    },
+    "require-dev": {},
     "license": "MIT",
     "authors": [
         {
