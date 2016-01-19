@@ -101,7 +101,7 @@ class Timer {
 		return $stop - $this->start_time;
 	}
 
-	public function average() {
+	public function average( $precision = 3 ) {
 		if ( self::STATE_RESET === $this->state ) {
 			return false;
 		}
@@ -109,7 +109,7 @@ class Timer {
 		$time = $this->elapsed_time();
 		$items = $this->current_item;
 
-		return ( $time / $items );
+		return round( ( $time / $items ), $precision );
 	}
 
 	public function remaining_time() {
