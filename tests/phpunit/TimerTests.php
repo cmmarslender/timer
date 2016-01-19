@@ -153,4 +153,62 @@ class TimerTests extends TestCase {
 		$this->assertEquals( 1, $timer->elapsed_time() );
 	}
 
+	public function test_friendly_times() {
+		$timer = new Timer();
+
+		$t = $timer->friendly_times( 1 );
+		$this->assertEquals( 0, $t['hours'] );
+		$this->assertEquals( 0, $t['minutes'] );
+		$this->assertEquals( 1, $t['seconds'] );
+
+		$t = $timer->friendly_times( 60 );
+		$this->assertEquals( 0, $t['hours'] );
+		$this->assertEquals( 1, $t['minutes'] );
+		$this->assertEquals( 0, $t['seconds'] );
+
+		$t = $timer->friendly_times( 61 );
+		$this->assertEquals( 0, $t['hours'] );
+		$this->assertEquals( 1, $t['minutes'] );
+		$this->assertEquals( 1, $t['seconds'] );
+
+		$t = $timer->friendly_times( 119 );
+		$this->assertEquals( 0, $t['hours'] );
+		$this->assertEquals( 1, $t['minutes'] );
+		$this->assertEquals( 59, $t['seconds'] );
+
+		$t = $timer->friendly_times( 120 );
+		$this->assertEquals( 0, $t['hours'] );
+		$this->assertEquals( 2, $t['minutes'] );
+		$this->assertEquals( 0, $t['seconds'] );
+
+		$t = $timer->friendly_times( 3600 );
+		$this->assertEquals( 1, $t['hours'] );
+		$this->assertEquals( 0, $t['minutes'] );
+		$this->assertEquals( 0, $t['seconds'] );
+
+		$t = $timer->friendly_times( 3601 );
+		$this->assertEquals( 1, $t['hours'] );
+		$this->assertEquals( 0, $t['minutes'] );
+		$this->assertEquals( 1, $t['seconds'] );
+
+		$t = $timer->friendly_times( 3660 );
+		$this->assertEquals( 1, $t['hours'] );
+		$this->assertEquals( 1, $t['minutes'] );
+		$this->assertEquals( 0, $t['seconds'] );
+
+		$t = $timer->friendly_times( 3661 );
+		$this->assertEquals( 1, $t['hours'] );
+		$this->assertEquals( 1, $t['minutes'] );
+		$this->assertEquals( 1, $t['seconds'] );
+	}
+
+	public function test_format_time() {
+		$timer = new Timer();
+
+		$this->assertEquals( "0:00:01", $timer->format_time( 1 ) );
+		$this->assertEquals( "0:01:01", $timer->format_time( 61 ) );
+		$this->assertEquals( "1:01:01", $timer->format_time( 3661 ) );
+		$this->assertEquals( "26:01:01", $timer->format_time( 93661 ) );
+	}
+
 }

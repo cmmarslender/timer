@@ -124,4 +124,27 @@ class Timer {
 		return round( $percent, $precision );
 	}
 
+	public function friendly_times( $seconds ) {
+		$times = array(
+			'hours' => floor( $seconds / 3600 ),
+			'minutes' => ( $seconds / 60 ) % 60,
+			'seconds' => $seconds % 60,
+		);
+
+		return $times;
+	}
+
+	/**
+	 * Formats seconds as Hours:Minutes:Seconds
+	 *
+	 * @param $seconds
+	 *
+	 * @return string
+	 */
+	public function format_time( $seconds ) {
+		$times = $this->friendly_times( $seconds );
+
+		return sprintf( "%d:%02d:%02d", $times['hours'], $times['minutes'], $times['seconds'] );
+	}
+
 }
